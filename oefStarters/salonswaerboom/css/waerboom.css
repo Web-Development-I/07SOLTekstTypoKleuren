@@ -1,0 +1,252 @@
+/* CSS variabelen */
+:root {
+  --nav-link-color: #757575;
+  --nav-link-hover-color: #1a7780;
+
+  --jumbotron-bgcolor: #3b3b3b;
+  --jumbotron-article-bgcolor: rgba(78, 80, 70, 0.85);
+  --jumbotron-border-color: #878979;
+
+  --articles-bgcolor: #d8d8c9;
+
+  --article-bgcolor: #8e956f;
+  --article-strong-color: #6b714d;
+
+  /* De kleuren voor de vier gekleurde
+  onderranden van 'article header' */
+  --article1-border-color: #97c6d9;
+  --article2-border-color: #a6715a;
+  --article3-border-color: #dcad5b;
+  --article4-border-color: #238b95;
+
+  --footer-bgcolor: #a2a48e;
+  --address-color: var(--footer-bgcolor);
+
+  --white: white;
+}
+
+@font-face {
+  font-family: 'helveticaneue';
+  src: url('../fonts/helveticaneue.woff') format('woff');
+}
+
+/* Algemene opmaak */
+/* ************** */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helveticaneue, sans-serif;
+  display: grid;
+}
+
+.content_wrapper {
+  /* De .content_wrapper is steeds gecentreerd */
+  margin: 0 auto;
+  /* Op de smartphone krijgt de content_wrapper
+  de nodige breedte voor één artikel */
+  width: 265px;
+  padding: 5px 10px;
+}
+
+/* Opmaak van de header */
+/* ******************** */
+
+/* Layout en opmaak van de navigatiebalk. */
+/* We starten verticaal */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+nav a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: var(--nav-link-color);
+}
+nav a:hover {
+  color: var(--nav-link-hover-color);
+  text-decoration: underline;
+}
+
+/* Voor de plaatsing van img en nav
+gebruiken we flex, we starten verticaal 
+(en op large devices komen de items naast)  */
+header .content_wrapper {
+  display: flex;
+  flex-direction: column;
+  /* logo moet gecentreerd worden */
+  align-items: center;
+}
+
+/* Opmaak van de jumbotron */
+/* *********************** */
+
+.jumbotron {
+  background-color: var(--jumbotron-bgcolor);
+  border-bottom: 8px solid var(--jumbotron-border-color);
+  /* De standaardwaarde voor 'background-repeat' is 'repeat'.*/
+  background-image: url('../images/patternslider.png');
+}
+
+.jumbotron article {
+  background-color: var(--jumbotron-article-bgcolor);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 15px;
+}
+.jumbotron h1 {
+  font-size: 2.25rem;
+  text-align: center;
+}
+.jumbotron p {
+  font-size: 1.125rem;
+}
+
+/* Opmaak van de artikels */
+/* ********************** */
+
+.articles {
+  background-color: var(--articles-bgcolor);
+  padding: 5px 0;
+}
+
+/* Voor de layout van de artikels binnen 
+de .content_wrapper gebruiken we grid. */
+.articles .content_wrapper {
+  display: grid;
+  gap: 10px;
+}
+
+/* De vier gekleurde onderranden van 'article header' toevoegen */
+.articles article:nth-child(1) header {
+  border-bottom: 5px var(--article1-border-color) solid;
+}
+.articles article:nth-child(2) header {
+  border-bottom: 5px var(--article2-border-color) solid;
+}
+.articles article:nth-child(3) header {
+  border-bottom: 5px var(--article3-border-color) solid;
+}
+.articles article:nth-child(4) header {
+  border-bottom: 5px var(--article4-border-color) solid;
+}
+
+.articles article {
+  background-color: var(--article-bgcolor);
+  /* Afgeronde hoeken */
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+}
+
+.articles article header {
+  background-color: var(--white);
+  text-align: center;
+  /* Ook bij de witte 'article header' moeten we bovenaan 
+  links en rechts de hoeken afronden */
+  border-radius: 10px 10px 0 0;
+}
+
+.articles article h2 {
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.articles article strong {
+  text-transform: capitalize;
+  color: var(--article-strong-color);
+  font-size: 1.25rem;
+  padding: 5px 0;
+  font-weight: normal;
+}
+
+.articles article p {
+  padding: 15px 20px;
+  color: var(--white);
+}
+
+/* Opmaak van de footer */
+/* *********************** */
+
+footer {
+  background-color: var(--footer-bgcolor);
+  font-size: 0.75rem;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+footer address {
+  background-color: var(--white);
+  color: var(--address-color);
+}
+
+/* @media voor medium devices */
+@media screen and (min-width: 540px) {
+  body {
+    grid-template-rows: auto 350px auto auto;
+  }
+
+  .content_wrapper {
+    /* Ruimte creëren voor 2 artikels */
+    width: 520px;
+  }
+
+  /* Twee artikels naast elkaar plaatsen */
+  .articles .content_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Navigatiebalk horizontaal maken */
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* Jumbotron opmaken */
+  .jumbotron .content_wrapper {
+    background-image: url('../images/waerboom-groot.jpg');
+    height: 100%;
+    background-position: right;
+    position: relative;
+  }
+  .jumbotron article {
+    width: 300px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+  }
+}
+
+/* @media voor large devices */
+@media screen and (min-width: 1050px) {
+  /* Ruimte creëren voor 4 artikels */
+  .content_wrapper {
+    width: 1030px;
+  }
+
+  /* Vier artikels naast elkaar plaatsen */
+  .articles .content_wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Het logo en het nav-element naast elkaar plaatsen. */
+  header .content_wrapper {
+    flex-direction: row;
+  }
+  /* nav naar rechts duwen */
+  header nav {
+    margin-left: auto;
+  }
+  /* Achtergrondafbeelding herpositioneren */
+  .jumbotron .content_wrapper {
+    background-position: center;
+  }
+}
